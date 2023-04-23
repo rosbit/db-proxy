@@ -1,0 +1,5 @@
+---
+listen-host: ""
+http-listen-port: 7080
+jsonl-rpc-listen-prot: 7081
+base32-chars: ""
