@@ -16,7 +16,7 @@ if necessary.
 
 run `go get github.com/rosbit/db-proxy`, an executable `db-proxy` should be found.
 
-There is a sample configration file named [db-proxy.sample.yaml](blob/master/db-proxy.sample.yaml), which is
+There is a sample configration file named [db-proxy.sample.yaml](db-proxy.sample.yaml), which is
 needed to run `db-proxy`.
 ```yaml
 ---
