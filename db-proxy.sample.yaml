@@ -2,4 +2,5 @@
 listen-host: ""
 http-listen-port: 7080
 jsonl-rpc-listen-prot: 7081
+q-len: 5
 base32-chars: ""

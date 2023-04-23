@@ -23,7 +23,8 @@ needed to run `db-proxy`.
 listen-host: ""
 http-listen-port: 7080
 jsonl-rpc-listen-prot: 7081
-q-len: 5 # the limit parallellism to access the real db server.
+q-len: 5         # the limit parallellism to access the real db server.
+base32-chars: "" # 32 charactors used as base32 base.
 ```
 
 ## Run
