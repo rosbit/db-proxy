@@ -83,7 +83,7 @@ func getRows(rows *sql.Rows) (columns []string, columnTypes []*sql.ColumnType, i
 				switch v := (*col).(type) {
 				case []byte:
 					switch columnTypes[i].DatabaseTypeName() {
-					case "VARCHAR", "TEXT", "NVARCHAR":
+					case "VARCHAR", "TEXT", "NVARCHAR", "CHAR", "JSON":
 						*col = string(v)
 					default:
 					}
