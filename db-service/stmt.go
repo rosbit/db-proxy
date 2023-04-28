@@ -67,15 +67,19 @@ func Query(svc DBService) {
 		return
 	}
 
-	columns, _, it, err := stmt.Query(args...)
+	columns, columnTypes, it, err := stmt.Query(args...)
 	if err != nil {
 		svc.SetErrorResp(http.StatusInternalServerError, err.Error())
 		return
 	}
 
+	typeNames := make([]string, len(columnTypes))
+	for i, ct := range columnTypes {
+		typeNames[i] = ct.DatabaseTypeName()
+	}
 	svc.SetResult(map[string]interface{}{
 		"columns": columns,
-		// "columnTypes": columnTypes,
+		"columnTypes": typeNames,
 	}, it)
 }
 
