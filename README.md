@@ -25,7 +25,31 @@ http-listen-port: 7080
 jsonl-rpc-listen-prot: 7081
 q-len: 5         # the limit parallellism to access the real db server.
 base32-chars: "" # 32 charactors used as base32 base.
+dsn-params:
+  js-file: name2dsn.js
+  js-func: getDSNByName
+common-endpoints:
+  health: /health
+  websocket: /websocket
 ```
+
+There is a also a sample JavaScript file named [name2dsn.js](name2dsn.js), which can provide dsn-name to real dsn mapping dynamically. The sample content of `name2dsn.js`:
+```javascript
+var name2dsn = {
+	'test': 'mysql:user:password@tcp(172.16.10.240:3306)/?charset=utf8mb4',
+	'163': 'mysql:user:password@tcp(192.168.0.163:3306)/?charset=utf8mb4'
+}
+
+function getDSNByName(name) {
+	var dsn = name2dsn[name];
+	if (dsn) {
+		return dsn
+	}
+	return ""
+}
+```
+
+With the helper of `name2dsn.js`, you can specify dsn like `name2dsn:name-of-dsn` if you want to access a real database instance.
 
 ## Run
 

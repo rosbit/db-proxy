@@ -17,7 +17,7 @@ import (
 )
 
 func StartService() error {
-	serviceConf := conf.ServiceConf
+	serviceConf := &conf.ServiceConf
 	if err := utils.InitIdCodec(serviceConf.Base32Chars); err != nil {
 		return err
 	}
@@ -27,11 +27,11 @@ func StartService() error {
 		api.POST(fmt.Sprintf("/%s", action), rest.CreateDBProxy(action))
 	}
 
-	// health check
-	api.GET("/health", func(c *mgin.Context) {
+	ce := &serviceConf.CommonEndpoints
+	api.GET(ce.Health, func(c *mgin.Context) {
 		c.String(http.StatusOK, "OK\n")
 	})
-	api.Get("/websocket", rpc.WebsocketRpcHandler)
+	api.Get(ce.Websocket, rpc.WebsocketRpcHandler)
 
 	db.InitQ(serviceConf.QLen)
 

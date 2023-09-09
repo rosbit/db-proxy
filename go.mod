@@ -17,6 +17,8 @@ require (
 	github.com/go-playground/validator/v10 v10.5.0 // indirect
 	github.com/go-zoo/bone v1.3.0 // indirect
 	github.com/leodido/go-urn v1.2.0 // indirect
+	github.com/rosbit/dukgo v0.5.5 // indirect
+	github.com/rosbit/go-embedding-utils v0.4.1 // indirect
 	github.com/rosbit/reader-logger v0.1.1 // indirect
 	github.com/urfave/negroni v1.0.0 // indirect
 	golang.org/x/crypto v0.0.0-20200622213623-75b288015ac9 // indirect

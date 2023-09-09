@@ -10,6 +10,12 @@
 // jsonl-rpc-listen-prot: 7081
 // q-len: 5
 // base32-chars: "abcd2efgh3ijkl4mnop5qrst6uvwx7yz"
+// dsn-params:
+//   js-file: xxxx.js
+//   js-func: xxxx
+// common-endpoints:
+//   health: /health
+//   websocket: /websocket
 //
 // Rosbit Xu
 package conf
@@ -28,6 +34,14 @@ type DBProxyConf struct {
 	JSONLRpcListenPort int `yaml:"jsonl-rpc-listen-prot"`
 	QLen               int `yaml:"q-len"`
 	Base32Chars     string `yaml:"base32-chars"`
+	DsnParams struct {
+		JsFile string `yaml:"js-file"`
+		JsFunc string `yaml:"js-func"`
+	} `yaml:"dsn-params"`
+	CommonEndpoints struct {
+		Health string `yaml:"health"`
+		Websocket string `yaml:"websocket"`
+	} `yaml:"common-endpoints"`
 }
 
 var (
@@ -78,7 +92,7 @@ func CheckGlobalConf() error {
 }
 
 func checkMust(confFile string) error {
-	// confRoot := path.Dir(confFile)
+	confRoot := path.Dir(confFile)
 
 	if ServiceConf.HttpListenPort <= 0 {
 		return fmt.Errorf("http-listen-port expected in conf")
@@ -88,6 +102,26 @@ func checkMust(confFile string) error {
 	}
 	if ServiceConf.HttpListenPort == ServiceConf.JSONLRpcListenPort {
 		return fmt.Errorf("http-listen-port and jsonl-rpc-listen-port must be different")
+	}
+
+	dp := &ServiceConf.DsnParams
+	if len(dp.JsFile) == 0 {
+		return fmt.Errorf("dsn-params/js-file expected to in conf")
+	}
+	dp.JsFile = toAbsPath(confRoot, dp.JsFile)
+	if err := checkFile(dp.JsFile); err != nil {
+		return err
+	}
+	if len(dp.JsFunc) == 0 {
+		return fmt.Errorf("dsn-params/js-func expected to in conf")
+	}
+
+	ce := &ServiceConf.CommonEndpoints
+	if len(ce.Health) == 0 {
+		return fmt.Errorf("common-endpoints/health expected to in conf")
+	}
+	if len(ce.Websocket) == 0 {
+		return fmt.Errorf("common-endpoints/websocket expected to in conf")
 	}
 
 	if ServiceConf.QLen <= 1 {
@@ -108,6 +142,13 @@ func checkDir(path, prompt string) error {
 		return err
 	} else if !fi.IsDir() {
 		return fmt.Errorf("%s %s is not a directory", prompt, path)
+	}
+	return nil
+}
+
+func checkFile(path string) error {
+	if _, err := os.Stat(path); err != nil {
+		return err
 	}
 	return nil
 }

@@ -20,15 +20,18 @@ func OpenDB(svc DBService) {
 		svc.SetErrorResp(http.StatusBadRequest, "bad request")
 		return
 	}
-	// connId, err := db.Open(params.DSN)
-	_, err := db.Open(params.DSN)
+	dsn, err := db.GetDSNByName(params.DSN)
 	if err != nil {
 		svc.SetErrorResp(http.StatusInternalServerError, err.Error())
 		return
 	}
 
+	if _, err = db.Open(dsn); err != nil {
+		svc.SetErrorResp(http.StatusInternalServerError, err.Error())
+		return
+	}
+
 	svc.SetResult(map[string]interface{}{
-		// "conn-id": utils.EncodeId(utils.ID_CONN, uint32(connId)),
-		"db-id": utils.EncodeStr(params.DSN),
+		"db-id": utils.EncodeStr(dsn),
 	})
 }

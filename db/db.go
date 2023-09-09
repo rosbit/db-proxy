@@ -70,14 +70,23 @@ func (dbId DB) BeginTx(opts *sql.TxOptions) (txId Tx, err error) {
 	return
 }
 
-func connectToDB(p interface{}) (res interface{}, err error) {
-	dsn, _ := p.(string)
+func breakDSN(dsn string) (driverName, realDSN string, err error) {
 	s := strings.SplitN(dsn, ":", 2)
 	if len(s) != 2 {
 		err = fmt.Errorf("bad dsn")
 		return
 	}
-	driverName, realDSN := s[0], s[1]
+	driverName, realDSN = s[0], s[1]
+	return
+}
+
+func connectToDB(p interface{}) (res interface{}, err error) {
+	dsn, _ := p.(string)
+	driverName, realDSN, e := breakDSN(dsn)
+	if e != nil {
+		err = e
+		return
+	}
 	switch driverName {
 	default:
 		err = fmt.Errorf("driver %s unsupported")

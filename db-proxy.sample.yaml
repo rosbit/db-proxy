@@ -4,3 +4,9 @@ http-listen-port: 7080
 jsonl-rpc-listen-prot: 7081
 q-len: 5
 base32-chars: ""
+dsn-params:
+  js-file: name2dsn.js
+  js-func: getDSNByName
+common-endpoints:
+  health: /health
+  websocket: /websocket
