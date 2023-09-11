@@ -49,7 +49,7 @@ function getDSNByName(name) {
 }
 ```
 
-With the helper of `name2dsn.js`, you can specify dsn like `name2dsn:name-of-dsn` if you want to access a real database instance.
+With the helper of `name2dsn.js`, you can specify dsn like `dbproxy:name-of-dsn` if you want to access a real database instance.
 
 ## Run
 

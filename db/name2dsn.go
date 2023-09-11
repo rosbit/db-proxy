@@ -6,6 +6,10 @@ import (
 	"fmt"
 )
 
+const (
+	name2dsn_driver = "dbproxy"
+)
+
 func init() {
 	djs.InitCache()
 }
@@ -19,7 +23,7 @@ func GetDSNByName(originDSN string) (dsnWithDriverName string, err error) {
 		err = e
 		return
 	}
-	if driverName != "name2dsn" {
+	if driverName != name2dsn_driver {
 		dsnWithDriverName = originDSN
 		return
 	}
