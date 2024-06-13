@@ -8,6 +8,7 @@
 // listen-host: ""
 // http-listen-port: 7080
 // jsonl-rpc-listen-prot: 7081
+// dumping-http-body: true
 // q-len: 5
 // base32-chars: "abcd2efgh3ijkl4mnop5qrst6uvwx7yz"
 // dsn-params:
@@ -32,6 +33,7 @@ type DBProxyConf struct {
 	ListenHost      string `yaml:"listen-host"`
 	HttpListenPort     int `yaml:"http-listen-port"`
 	JSONLRpcListenPort int `yaml:"jsonl-rpc-listen-prot"`
+	DumpingHttpBody   bool `yaml:"dumping-http-body"`
 	QLen               int `yaml:"q-len"`
 	Base32Chars     string `yaml:"base32-chars"`
 	DsnParams struct {

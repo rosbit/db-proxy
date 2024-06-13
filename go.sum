@@ -26,10 +26,10 @@ github.com/rosbit/go-embedding-utils v0.4.1 h1:vwxlGJEO1+fvcm7wVWe1zO0TS1DLktTUm
 github.com/rosbit/go-embedding-utils v0.4.1/go.mod h1:vN49YyUkB9OQI4t/6ofn0+kHYOrn/mAP1cqkzITBoEw=
 github.com/rosbit/jsonl-rpc v1.0.2 h1:GHLqPFoJVXBobxtUAUIGTzAyo5p+Zt6twvijhTBn7MA=
 github.com/rosbit/jsonl-rpc v1.0.2/go.mod h1:eVzBVCRuZEMEjzLQ7s50dZOyI931IYyCf9o8OOqDMc4=
-github.com/rosbit/mgin v0.1.6 h1:bZ7VjB4fXVe4TDn9f2+UNiZGL8ZJnVSmibKwgwOEsIA=
-github.com/rosbit/mgin v0.1.6/go.mod h1:SjtoRryifRdDahJ1O1MKZXvT6VkQE7ynZrFVzGnV0X4=
-github.com/rosbit/reader-logger v0.1.1 h1:ARzVlezh7D49iyemHgiOnLDJnhNtS0bFkYCdhLCoo9g=
-github.com/rosbit/reader-logger v0.1.1/go.mod h1:oOiaR7g4igbkceD9HUTGViwhE1A8eI2xHnNyWiik+MM=
+github.com/rosbit/mgin v0.2.4 h1:w1EhESAQ25NcKDJPZWoUVcTcOtQF2yTiCJZdsJPWblA=
+github.com/rosbit/mgin v0.2.4/go.mod h1:G+Iw1RB9b43OOvUte/PA0gpGArgvfyicKSXsdODjBjI=
+github.com/rosbit/reader-logger v0.2.0 h1:gkswvUAWLoE4YMDLycugM00/hqdbxuQqg713Tus+qrg=
+github.com/rosbit/reader-logger v0.2.0/go.mod h1:oOiaR7g4igbkceD9HUTGViwhE1A8eI2xHnNyWiik+MM=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/testify v1.3.0/go.mod h1:M5WIy9Dh21IEIfnGCwXGc5bZfKNJtfHm1UVUgZn+9EI=
 github.com/stretchr/testify v1.4.0 h1:2E4SXV/wtOkTonXsotYi4li6zVWxYlZuYNCXe9XRJyk=

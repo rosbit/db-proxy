@@ -13,6 +13,7 @@ import (
 	"db-proxy/rest"
 	"db-proxy/db"
 	"net/http"
+	"os"
 	"fmt"
 )
 
@@ -22,7 +23,15 @@ func StartService() error {
 		return err
 	}
 
-	api := mgin.NewMgin(mgin.WithLogger("db-proxy"))
+	var api *mgin.MiniGin
+	if serviceConf.DumpingHttpBody {
+		api = mgin.NewMgin(
+			mgin.WithLogger("db-proxy"),
+			mgin.CreateBodyDumpingHandler(os.Stderr, "raw body"),
+		)
+	} else {
+		api = mgin.NewMgin(mgin.WithLogger("db-proxy"))
+	}
 	for action := range dbsvc.GetActionNames() {
 		api.POST(fmt.Sprintf("/%s", action), rest.CreateDBProxy(action))
 	}
